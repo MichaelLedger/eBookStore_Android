@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.zsc.mxr.ebookstore.Utils.Cryption;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
@@ -22,7 +24,9 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
 
-    private String OKHTTP_DEBUGTAG = "OKHTTP_DEBUGTAG";
+    private static final String OKHTTP_DEBUGTAG = "OKHTTP_DEBUGTAG";
+    private static final String Base64_DEBUGTAG = "Base64_DEBUGTAG";
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -55,6 +59,16 @@ public class MainActivity extends AppCompatActivity {
 
 //        testOkHttpAsyncGetRequest();
 //        testOkHttpSyncGetRequest();
+
+        testCryption();
+    }
+    
+    /*测试Base64加解密*/
+    private void testCryption() {
+        String originalStr = "{\"matchUserId\":964432,\"matchUserLogo\":\"http:\\/\\/thirdwx.qlogo.cn\\/mmopen\\/vi_32\\/SA3CSnticeERMibaA5jxQbB0vRTpwBg81Vc4NsPvKDjr0PibibPPH7V9kSibACiasr8ordBRfOAmia3GhXVAT9K9WvOvA\\/132\",\"matchAccuracy\":12,\"matchUserName\":\"欣\",\"questionDetail\":[{\"questionId\":\"1715\",\"isRight\":0,\"answerIds\":[]},{\"questionId\":\"1714\",\"isRight\":0,\"answerIds\":[]},{\"questionId\":\"1716\",\"isRight\":0,\"answerIds\":[]},{\"questionId\":\"1718\",\"isRight\":0,\"answerIds\":[]},{\"questionId\":\"1713\",\"isRight\":0,\"answerIds\":[6502]},{\"questionId\":\"1719\",\"isRight\":1,\"answerIds\":[6520]},{\"questionId\":\"1712\",\"isRight\":1,\"answerIds\":[6499]},{\"questionId\":\"1717\",\"isRight\":0,\"answerIds\":[6514]}],\"qaInfoId\":\"261\",\"endTime\":1562918775863,\"ip\":\"fe80::cb8:eb8:a9b4:2a0\",\"accuracy\":25,\"result\":1,\"startTime\":1562918652000,\"isPk\":0}";
+        String encodedStr = Cryption.encryptionToStr(originalStr, true);
+        String decodedStr = Cryption.decryption(encodedStr);
+        Log.d(Base64_DEBUGTAG, decodedStr);
     }
 
     /*异步GET请求*/
