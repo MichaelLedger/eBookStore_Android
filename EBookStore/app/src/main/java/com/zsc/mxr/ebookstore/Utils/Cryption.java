@@ -2,6 +2,9 @@ package com.zsc.mxr.ebookstore.Utils;
 
 import java.util.Random;
 
+/*GTMBase64 from Google Toolbox*/
+/*http://code.google.com/p/google-toolbox-for-mac/source/browse/trunk/Foundation/?r=87*/
+
 public class Cryption {
     public static int PACKET_HEADER_SIZE = 5;
 
